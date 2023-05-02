@@ -69,22 +69,14 @@ class Ui_MainWindow(QMainWindow):
         current_item = self.contact_list.currentItem()
         if not current_item:
             return
-    def show_context_menu(self, pos):
-        context_menu = self.create_context_menu(self.contact_list)
-        global_pos = self.contact_list.mapToGlobal(pos)
-        current_item = self.contact_list.itemAt(pos)
-        if current_item:
-            action = context_menu.exec_(global_pos)
-            if action and action.text() == "删除联系人":
-                row = self.contact_list.row(current_item)
-                self.contact_list.takeItem(row)
+    
 
 
     def setupUi(self, MainWindow):
         self.contact_list = ContactList()
-        self.contact_list = QListWidget()
+
         self.contact_list.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.contact_list.customContextMenuRequested.connect(self.show_context_menu)
+        
         # 主布局
         central_widget = QWidget(MainWindow)  # 将 central_widget 的定义移动到这里
         main_layout = QVBoxLayout()
