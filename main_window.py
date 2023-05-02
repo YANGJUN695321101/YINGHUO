@@ -28,6 +28,7 @@ def load_avatar(avatar_label, image_path):
         
 class Ui_MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
+        
          # 主布局
         central_widget = QWidget(MainWindow)  # 将 central_widget 的定义移动到这里
         main_layout = QVBoxLayout()
@@ -156,7 +157,8 @@ class Ui_MainWindow(QMainWindow):
         input_area_and_button_layout = QHBoxLayout()
         input_area_and_button_layout.setContentsMargins(0, 0, 0, 0)
         input_area_and_button_layout.setSpacing(0)
-        input_area = ChatInputTextEdit()
+        input_area = ChatInputTextEdit(chat_history)
+
         input_area.setPlaceholderText("输入聊天内容")
         input_area.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)  # 设置输入框的尺寸策略
         input_area_and_button_layout.addWidget(input_area)
@@ -168,11 +170,12 @@ class Ui_MainWindow(QMainWindow):
         chat_history.setReadOnly(True)
         chat_history.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)  # 设置聊天记录框的尺寸策略
         chat_layout.addWidget(chat_history)
-        central_layout.addLayout(chat_layout)
+        # 将 chat_layout 和 input_area_layout 添加到新的 QVBoxLayout 中
+        chat_and_input_layout = QVBoxLayout()
+        chat_and_input_layout.addLayout(chat_layout)
+        chat_and_input_layout.addLayout(input_area_layout)
 
-        central_layout.addLayout(input_area_layout)  # 将 input_area_layout 添加到 central_layout 中
-
-
+        central_layout.addLayout(chat_and_input_layout)  # 将 chat_and_input_layout 添加到 central_layout 中
 
 
         
