@@ -49,19 +49,21 @@ def add_messages():
     history_text_edit.add_message("你好，你好吗？", is_sender=True)
     history_text_edit.add_message("我很好，谢谢！", is_sender=False)
 
-app = QApplication([])
-window = QMainWindow()
-central_widget = QWidget()
-layout = QVBoxLayout(central_widget)
-history_text_edit = ChatHistoryTextEdit()
-layout.addWidget(history_text_edit)
-window.setCentralWidget(central_widget)
-window.show()
+if __name__ == "__main__":
+    app = QApplication([])
+    window = QMainWindow()
+    central_widget = QWidget()
+    layout = QVBoxLayout(central_widget)
+    history_text_edit = ChatHistoryTextEdit()
+    layout.addWidget(history_text_edit)
+    window.setCentralWidget(central_widget)
+    window.show()
 
-# 使用 QTimer 来在事件循环开始后添加消息
-timer = QTimer()
-timer.timeout.connect(add_messages)
-timer.setSingleShot(True)
-timer.start(0)
+    # 使用 QTimer 来在事件循环开始后添加消息
+    timer = QTimer()
+    timer.timeout.connect(add_messages)
+    timer.setSingleShot(True)
+    timer.start(0)
 
-app.exec_()
+    app.exec_()
+
